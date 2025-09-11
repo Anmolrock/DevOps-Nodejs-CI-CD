@@ -1,6 +1,9 @@
 # DevOps CI/CD Pipeline – Node.js App
 
 ## Architecture Diagram
+<img width="1536" height="1024" alt="diagram" src="https://github.com/user-attachments/assets/8b96ed30-df6b-4b77-a8bd-29c6a47563d6" />
+
+
           ┌─────────────┐
           │  GitHub     │
           │ (Node.js    │
