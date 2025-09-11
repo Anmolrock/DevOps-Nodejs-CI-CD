@@ -1,0 +1,53 @@
+          ┌─────────────┐
+          │  GitHub     │
+          │ (Node.js    │
+          │  project)   │
+          └─────┬──────┘
+                │  Code Push
+                ▼
+          ┌─────────────┐
+          │  Jenkins    │
+          │  Pipeline   │
+          │  (CI/CD)    │
+          └─────┬──────┘
+                │ Build & Test
+                ▼
+          ┌─────────────┐
+          │   Docker    │
+          │  Build &    │
+          │ Push to DH  │
+          └─────┬──────┘
+                │ Image Push
+                ▼
+          ┌─────────────┐
+          │ AWS ECS     │
+          │ Cluster     │
+          │ (Fargate)   │
+          └─────┬──────┘
+                │ Deploy Container
+                ▼
+          ┌─────────────┐
+          │  Public IP  │
+          │  Application│
+          └─────────────┘
+
+Explanation:
+
+Developer pushes Node.js code to GitHub.
+
+Jenkins pipeline triggers automatically:
+
+Checks out code
+
+Installs dependencies and runs tests
+
+Builds Docker image
+
+Pushes Docker image to Docker Hub
+
+AWS ECS Fargate pulls the latest Docker image and runs the container.
+
+The application is accessible via the public IP of the ECS task.
+
+
+
