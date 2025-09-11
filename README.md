@@ -1,61 +1,28 @@
-# Logo Server
+# DevOps CI/CD Pipeline – Node.js App
 
-A simple Express.js web server that serves the Swayatt logo image.
+## Architecture Diagram
+![Architecture](docs/architecture.png)
 
-## What is this app?
+## Tools Used
+- AWS ECS
+- Docker
+- Jenkins
+- GitHub
+- Node.js
+- CloudWatch
 
-This is a lightweight Node.js application built with Express.js that serves a single logo image (`logoswayatt.png`) when accessed through a web browser. When you visit the root URL, the server responds by displaying the Swayatt logo.
+## Setup Instructions
+1. Clone repository.
+2. Configure Jenkins with credentials.
+3. Setup webhook.
+4. Run pipeline.
 
-## Prerequisites
+## Pipeline Flow
+1. Checkout code.
+2. Install dependencies & test.
+3. Build Docker image.
+4. Push to DockerHub.
+5. Deploy to AWS ECS.
 
-- Node.js (version 12 or higher)
-- npm (Node Package Manager)
-
-## Installation
-
-1. Clone or download this repository
-2. Navigate to the project directory:
-   ```bash
-   cd "devops task"
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## How to Start the App
-
-Run the following command:
-```bash
-npm start
-```
-
-The server will start and display:
-```
-Server running on http://localhost:3000
-```
-
-## Usage
-
-Once the server is running, open your web browser and navigate to:
-```
-http://localhost:3000
-```
-
-You will see the Swayatt logo displayed in your browser.
-
-## Project Structure
-
-```
-├── app.js              # Main server file
-├── package.json        # Project dependencies and scripts
-├── logoswayatt.png     # Logo image file
-└── README.md          # This file
-```
-
-## Technical Details
-
-- **Framework**: Express.js
-- **Port**: 3000
-- **Endpoint**: GET `/` - serves the logo image
-- **File served**: `logoswayatt.png`
+## Monitoring
+Logs can be viewed in AWS CloudWatch → Log groups → devops-service.
