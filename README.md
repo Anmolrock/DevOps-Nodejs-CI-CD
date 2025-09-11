@@ -1,7 +1,38 @@
 # DevOps CI/CD Pipeline – Node.js App
 
 ## Architecture Diagram
-![Architecture](docs/architecture.png)
+          ┌─────────────┐
+          │  GitHub     │
+          │ (Node.js    │
+          │  project)   │
+          └─────┬──────┘
+                │  Code Push
+                ▼
+          ┌─────────────┐
+          │  Jenkins    │
+          │  Pipeline   │
+          │  (CI/CD)    │
+          └─────┬──────┘
+                │ Build & Test
+                ▼
+          ┌─────────────┐
+          │   Docker    │
+          │  Build &    │
+          │ Push to DH  │
+          └─────┬──────┘
+                │ Image Push
+                ▼
+          ┌─────────────┐
+          │ AWS ECS     │
+          │ Cluster     │
+          │ (Fargate)   │
+          └─────┬──────┘
+                │ Deploy Container
+                ▼
+          ┌─────────────┐
+          │  Public IP  │
+          │  Application│
+          └─────────────┘
 
 ## Tools Used
 - AWS ECS
@@ -26,3 +57,22 @@
 
 ## Monitoring
 Logs can be viewed in AWS CloudWatch → Log groups → devops-service.
+
+**Explanation:**
+
+Developer pushes Node.js code to GitHub.
+
+Jenkins pipeline triggers automatically:
+
+Checks out code
+
+Installs dependencies and runs tests
+
+Builds Docker image
+
+Pushes Docker image to Docker Hub
+
+AWS ECS Fargate pulls the latest Docker image and runs the container.
+
+The application is accessible via the public IP of the ECS task.
+
