@@ -55,13 +55,11 @@ GitHub → Source code repository
 # Setup Instructions
 Setup Jenkins
 
-Create a new pipeline job.
+1. Create a new pipeline job.
 
-Add Docker Hub and AWS credentials.
+2. Add Docker Hub and AWS credentials.
 
 Install and configure NodeJS 18 plugin.
-
-
 
 3. Configure AWS ECS
 
@@ -158,5 +156,5 @@ AWS ECS Fargate pulls the latest Docker image and runs the container.
 
 The application is accessible via the public IP of the ECS task.
 
-👨‍💻 Author: Anmolrock
+👨‍💻 Author: Anmol Upadhaya 
 
