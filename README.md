@@ -52,35 +52,74 @@ AWS ECS (Elastic Container Service) → Deployment & container orchestration
 AWS EC2 / Fargate → Compute platform
 
 GitHub → Source code repository
+# Setup Instructions
+Setup Jenkins
 
-## Setup Instructions
-1. Clone repository.
-2. Configure Jenkins with credentials.
-3. Setup webhook.
-4. Run pipeline.
+Create a new pipeline job.
 
-📂 Repository Structure
-├── Architecture-Diagram/       # System design & workflow
-├── Deployment-Proof.pdf        # Screenshots of working deployment
-├── Dockerfile                  # Docker image definition
-├── Jenkinsfile                 # Jenkins pipeline for CI/CD
-├── README.md                   # Setup & deployment guide (this file)
-├── WRITEUP.md                  # Challenges, learnings & improvements
-├── app.js                      # Node.js Express app
-├── deploy.sh                   # Deployment script to ECS
-├── logoswayatt.png             # App asset/logo
-├── package.json                # Node.js dependencies
+Add Docker Hub and AWS credentials.
+
+Install and configure NodeJS 18 plugin.
+
+
+
+3. Configure AWS ECS
+
+Create a cluster devops-cluster.
+
+Create a task definition devops-task.
+
+Setup log group /ecs/devops-task in CloudWatch.
+
+Assign ecsTaskExecutionRole IAM permissions.
+
+
+
+4. Run Jenkins Pipeline
+
+Build, test, dockerize, and deploy the application.
+
+
+
+5. Access the Application
+
+Use the ECS public IP (from ENI) and port 3000 to view the app.
+
+🚀 Pipeline Flow Explanation
+
+1. Code Checkout
+
+Jenkins pulls source code from GitHub’s dev branch.
+
+2. Build
+
+Runs npm install and npm test.
+
+3. Dockerize
+
+Builds a Docker image for the application.
+
+4. Push Image
+
+Uploads the image to Docker Hub.
+
+5. Deploy
+
+Updates AWS ECS service with the latest image.
+
+Logs are sent to AWS CloudWatch for monitoring.
+
+📂 Folder Structure
+
+devops-nodejs-ci-cd/
+├── README.md
+├── Dockerfile
+├── deploy.sh
+├── app.js
+├── package.json
 ├── package-lock.json
-
-## Pipeline Flow
-1. Checkout code.
-2. Install dependencies & test.
-3. Build Docker image.
-4. Push to DockerHub.
-5. Deploy to AWS ECS.
-
-## Monitoring
-Logs can be viewed in AWS CloudWatch → Log groups → devops-service.
+└── images/
+    └── architecture-diagram.png
 
 💡 Possible Improvements
 
